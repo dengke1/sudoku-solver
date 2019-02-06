@@ -61,7 +61,7 @@ def check_quadrant(board, x, y):
 def triple_intersection(set1, set2, set3):
    return set1.intersection(set2).intersection(set3)
 
-def next_loc(board): ## needs some fixing for harder puzzles
+def next_loc(board):
    '''
    returns next location to fill in, along with set of available values
    -1 -1 set() is returned if board is full (ie complete)
