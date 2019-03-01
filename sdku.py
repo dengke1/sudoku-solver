@@ -37,6 +37,8 @@ def check_quadrant(board, x, y):
    available_val = nums.copy()
    if board[y][x] != 0:
       return set()   
+   
+   # yea this is bad i'll change it to x//3 or something someday
    if x < 3:
       minx = 0
    elif x < 6:
