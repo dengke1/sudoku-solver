@@ -38,20 +38,8 @@ def check_quadrant(board, x, y):
    if board[y][x] != 0:
       return set()   
    
-   # yea this is bad i'll change it to x//3 or something someday
-   if x < 3:
-      minx = 0
-   elif x < 6:
-      minx = 3
-   elif x < 9:
-      minx = 6
-   
-   if y < 3:
-      miny = 0
-   elif y < 6:
-      miny = 3
-   elif y < 9:
-      miny = 6
+   minx = x//3*3
+   miny = y//3*3
       
    for i in range(miny, miny+3):
       for j in range(minx, minx+3):
