@@ -114,6 +114,12 @@ if __name__ == "__main__":
       
       try:
          f = open(file_name + ".txt", "r")
+         works = True
+      except:
+         print("FILE DOES NOT EXIST TRY AGAIN")
+         works = False
+      
+      if works:
          puzzle_str = f.read()
          puzzle_str = puzzle_str.replace("\n", "").replace(" ", "")
          
@@ -126,9 +132,6 @@ if __name__ == "__main__":
          solve(puzzle)
          print_board(puzzle)  
          f.close()         
-          
-      except:
-         print("FILE DOES NOT EXIST TRY AGAIN")
          
          
  
