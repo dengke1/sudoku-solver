@@ -1,30 +1,30 @@
 nums = {1, 2, 3, 4, 5, 6, 7, 8, 9}
 
-def check_column(board, x, y):
+def check_column(board, c):
    '''
-   checks column given x, y returns set of possible values for position
+   checks column given c returns set of possible values for position
    empty set is returned if position is filled
    '''
    available_val = nums.copy()
-   if board[y][x] != 0:
-      return set()   
+   #if board[y][x] != 0:
+      #return set()   
    for i in range (0, 9):
-      if board[i][x] in nums:
-         available_val.remove(board[i][x])
+      if board[i][c] in nums:
+         available_val.remove(board[i][c])
 
    return available_val
 
-def check_row(board, x, y):
+def check_row(board, r):
    '''
-   checks row given x, y returns set of possible values for position
+   checks row given r returns set of possible values for position
    empty set is returned if position is filled
    '''
    available_val = nums.copy()
-   if board[y][x] != 0:
-      return set()   
+   #if board[y][x] != 0:
+      #return set()   
    for i in range (0, 9):
-      if board[y][i] in nums:
-         available_val.remove(board[y][i])
+      if board[r][i] in nums:
+         available_val.remove(board[r][i])
    
    return available_val
 
@@ -36,7 +36,7 @@ def check_quadrant(board, x, y):
    # set min and max values for quadrant
    available_val = nums.copy()
    if board[y][x] != 0:
-      return set()   
+      return set()
    
    minx = x//3*3
    miny = y//3*3
@@ -59,13 +59,13 @@ def next_loc(board):
    fewest = 9
    available_vals = set()
    x = -1; y = -1
-   for i in range(0, 9): # y
-      for j in range(0, 9): # x
+   for i in range(0, 9): # rows
+      for j in range(0, 9): # columns
          # skip over filled spaces
          if board[i][j] == 0:
             
-            temp = triple_intersection(check_row(board, j, i),
-                                       check_column(board, j, i),
+            temp = triple_intersection(check_row(board, i),
+                                       check_column(board, j),
                                        check_quadrant(board, j, i))         
             cur = len(temp)
             # finds space with fewest possible values
@@ -88,6 +88,7 @@ def print_board(board):
 def solve(board):
    '''
    recursively solves sudoku
+   9x9 matrix should be a solvable/valid sudoku puzzle
    '''
    nx, ny, ns = next_loc(board)
    # board is filled
@@ -132,10 +133,8 @@ if __name__ == "__main__":
          solve(puzzle)
          print_board(puzzle)  
          f.close()         
-         
-         
- 
-   
+       
+      
    #puzzle = [[0, 8, 0,  0, 1, 0,  6, 0, 2], 
              #[0, 0, 0,  0, 0, 0,  1, 7, 9], 
              #[0, 0, 0,  9, 0, 7,  0, 8, 4], 
